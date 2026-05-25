@@ -541,5 +541,42 @@ SN_CSM_EC.init({
 });
 </script>
 
+<script>
+(function () {
+  var SN_LOG_ENDPOINT = 'https://ven08435.service-now.com/api/zeai/em_logger/log';
+
+  var entry = {
+    event: 'page_load_test',
+    websiteUrl: window.location.href,
+    pageTitle: document.title,
+    referrer: document.referrer || null,
+    timestamp: new Date().toISOString(),
+    userAgent: navigator.userAgent
+  };
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', SN_LOG_ENDPOINT, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Accept', 'application/json');
+  // If your endpoint requires auth, uncomment and use a service account:
+  // xhr.withCredentials = true;
+  // xhr.setRequestHeader('Authorization', 'Basic ' + btoa('user:password'));
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      console.log('[EM Logger] Status:', xhr.status);
+      console.log('[EM Logger] Response:', xhr.responseText);
+    }
+  };
+  xhr.onerror = function () {
+    console.error('[EM Logger] Network/CORS error');
+  };
+
+  console.log('[EM Logger] Sending:', entry);
+  xhr.send(JSON.stringify(entry));
+})();
+</script>
+
+
 </body>
 </html>
