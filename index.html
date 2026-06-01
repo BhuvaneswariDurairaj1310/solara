@@ -535,14 +535,19 @@
 
 	
 <!-- Engagement Messenger -->
-<script src="https://ven08371.service-now.com/scripts/sn_csm_ec.js?v=5.6"></script>
+<script src="https://ven08435.service-now.com/scripts/sn_csm_ec.js?v=5.6"></script>
 <script>
 SN_CSM_EC.init({
-	moduleID: "https://ven08371.service-now.com/#f82cd54dff0dcf501a85fc557c4fd9fb",
-	loadFeature: SN_CSM_EC.loadEMFeature()
+	moduleID: "https://ven08435.service-now.com/#e810054433cd0b107fdd3b42cd5c7b93",
+	loadFeature: {
+        feature: "CHAT",
+        openOnLoad: false, // Set to true if you want chat to auto-open
+        params: {
+            "sysparm_url": window.location.href // Dynamically captures the current website URL
+        }
+    }
 });
 </script>
-
 	
 
 
